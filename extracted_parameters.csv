@@ -1,0 +1,38 @@
+parameter,value,unit,source_file,detail
+WF[gas_cc] consumption,0.658,L/kWh,Cooling_Boiler_Generator_Data_Detail_2024.xlsx,"col 'Water Consumption Volume (Million Gallons)' / col net-gen, grouped by 'Generator Primary Technology'='Natural Gas Fired Combined Cycle', dedup cooling & generator"
+WF_WITH[gas_cc] withdrawal,7.854,L/kWh,Cooling_Boiler_Generator_Data_Detail_2024.xlsx,col 'Water Withdrawal Volume (Million Gallons)' similarly
+WF[gas_other] consumption,2.775,L/kWh,Cooling_Boiler_Generator_Data_Detail_2024.xlsx,"col 'Water Consumption Volume (Million Gallons)' / col net-gen, grouped by 'Generator Primary Technology'='Natural Gas Steam Turbine', dedup cooling & generator"
+WF_WITH[gas_other] withdrawal,225.119,L/kWh,Cooling_Boiler_Generator_Data_Detail_2024.xlsx,col 'Water Withdrawal Volume (Million Gallons)' similarly
+WF[coal] consumption,1.677,L/kWh,Cooling_Boiler_Generator_Data_Detail_2024.xlsx,"col 'Water Consumption Volume (Million Gallons)' / col net-gen, grouped by 'Generator Primary Technology'='Conventional Steam Coal', dedup cooling & generator"
+WF_WITH[coal] withdrawal,84.884,L/kWh,Cooling_Boiler_Generator_Data_Detail_2024.xlsx,col 'Water Withdrawal Volume (Million Gallons)' similarly
+WF[nuclear] consumption,1.377,L/kWh,Cooling_Boiler_Generator_Data_Detail_2024.xlsx,"col 'Water Consumption Volume (Million Gallons)' / col net-gen, grouped by 'Generator Primary Technology'='Nuclear', dedup cooling & generator"
+WF_WITH[nuclear] withdrawal,95.27,L/kWh,Cooling_Boiler_Generator_Data_Detail_2024.xlsx,col 'Water Withdrawal Volume (Million Gallons)' similarly
+WF[bio] consumption,3.172,L/kWh,Cooling_Boiler_Generator_Data_Detail_2024.xlsx,"col 'Water Consumption Volume (Million Gallons)' / col net-gen, grouped by 'Generator Primary Technology'='Wood/Wood Waste Biomass', dedup cooling & generator"
+WF_WITH[bio] withdrawal,42.886,L/kWh,Cooling_Boiler_Generator_Data_Detail_2024.xlsx,col 'Water Withdrawal Volume (Million Gallons)' similarly
+thermal_consumption_2024,3.55,billion m3,Cooling_Boiler_Generator_Data_Detail_2024.xlsx,sum(col 'Water Consumption Volume (Million Gallons)') dedup cooling; Mgal->m3
+thermal_withdrawal_2024,172.9,billion m3,Cooling_Boiler_Generator_Data_Detail_2024.xlsx,sum(col 'Water Withdrawal Volume (Million Gallons)') dedup cooling
+WF[hydro] consumption (central),9.53,L/kWh,es8b00139_si_002.xlsx,sheet 'Hydropower' Intensity 2.647 m3/GJ delivered; /277.778 kWh/GJ *1000 L/m3
+hydro_total_consumption_US,2.35,billion m3,es8b00139_si_002.xlsx,sheet 'Hydropower' Total Water Consumed m^3
+AEO2050 mix[ref] wind%,23.0,%,Narrative_Figures.xlsx,case 'Counterfactual Baseline': wind/Total
+AEO2050 mix[ref] solar%,17.0,%,Narrative_Figures.xlsx,case 'Counterfactual Baseline': solar/Total
+AEO2050 mix[ref] oil+gas%,40.9,%,Narrative_Figures.xlsx,case 'Counterfactual Baseline': (oil and gas)/Total
+AEO2050 mix[ref] nuclear%,12.8,%,Narrative_Figures.xlsx,case 'Counterfactual Baseline': nuclear/Total
+AEO2050 mix[accel] wind%,36.4,%,Narrative_Figures.xlsx,case 'Low Oil and Gas Supply': wind/Total
+AEO2050 mix[accel] solar%,20.9,%,Narrative_Figures.xlsx,case 'Low Oil and Gas Supply': solar/Total
+AEO2050 mix[accel] oil+gas%,18.6,%,Narrative_Figures.xlsx,case 'Low Oil and Gas Supply': (oil and gas)/Total
+AEO2050 mix[accel] nuclear%,15.1,%,Narrative_Figures.xlsx,case 'Low Oil and Gas Supply': nuclear/Total
+AEO2050 mix[slow] wind%,12.9,%,Narrative_Figures.xlsx,case 'High Oil and Gas Supply': wind/Total
+AEO2050 mix[slow] solar%,13.5,%,Narrative_Figures.xlsx,case 'High Oil and Gas Supply': solar/Total
+AEO2050 mix[slow] oil+gas%,55.0,%,Narrative_Figures.xlsx,case 'High Oil and Gas Supply': (oil and gas)/Total
+AEO2050 mix[slow] nuclear%,12.3,%,Narrative_Figures.xlsx,case 'High Oil and Gas Supply': nuclear/Total
+WF[hydro] range,5.4-68,L/kWh,Macknick 2012 (PDF) Table 1,hydropower 1425-18000 gal/MWh (median 4491=17); *3.78541/1000
+WF[solar],0.1,L/kWh,Macknick 2012 Table 1,utility PV 26 gal/MWh
+COOL current_evap WUE/PUE,0.61/1.145,"L/kWh,-",LBNL 2024 report Fig 4.5; LBNL 2025 Update,"WUE: AI-specialized aggregate (LBNL 2024); PUE: facilities serving AI equipment, 2024 (LBNL 2025 Update S.3.5)"
+COOL hyperscale WUE/PUE,0.32/1.22,"L/kWh,-",LBNL 2024 report Fig 4.5,hyperscale aggregate
+fleet WUE 2023->2028,0.36->0.45-0.48,L/kWh,LBNL 2024 report Fig 4.7,US aggregate site WUE; the 2028 value assumes no advanced-cooling penetration (see Supplementary Note 4). LBNL 2025 Update reports no water figures.
+WUE AWS / Microsoft,0.15 / 0.27,L/kWh,Amazon 2024 / Microsoft FY24 ESG,company sustainability reports
+demand 2023 / 2024,168 / 192,TWh,LBNL 2025 Update (Smith et al. 2026),national DC electricity; 2024 = 4.7% of US
+demand 2028 / 2030 range,464 / 521-843,TWh,LBNL 2025 Update,Reference Case 2028; 2030 Compounded Uncertainty low-Reference-high 521/649/843
+fab freshwater per wafer,6300,L/wafer,TSMC 2024 report,101 Mm3 / 16M 12-inch wafers (incl 85.7% recycle)
+AI share of IT electricity 2024 / 2030,0.38 / 0.75,fraction,LBNL 2025 Update Fig. 9; S.3.6,AI-specialised servers ~50 TWh of ~132 TWh IT (2024); AI servers 55% of total DC energy at aggregate PUE 1.36 (2030); model 0.85 in 2050 (0.70-0.90)
+non-AI fleet WUE (derived),0.24,L/kWh,mass balance to LBNL 2024 report (2023 values),AI share 0.32 (Fig 5.1) and fleet WUE 0.36: 0.32*0.61+0.68x=0.36 -> x=0.24 (not assumed)
